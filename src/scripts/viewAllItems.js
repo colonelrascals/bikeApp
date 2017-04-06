@@ -55,7 +55,7 @@ export const Item = React.createClass({
             <h4>${this.props.itemModel.get('price')}</h4>
             <p>
               <Button bsStyle='primary' href='#' >More Info</Button>
-              <StripeButton />
+              <StripeButton info={this.props.itemModel.attributes.seller} />
             </p>
           </Thumbnail>
         </Col>
@@ -78,17 +78,17 @@ export const StripeButton = React.createClass({
   // ...
 
   render () {
+    console.log(this.props.info)
     return (
       <StripeCheckout
-        name='name'
+        name={this.props.info.name}
         description='Big Data Stuff'
         ComponentClass='div'
-        panelLabel='Give Money'
-        amount={1000000}
+        panelLabel='Pay'
         currency='USD'
         stripeKey='pk_test_d4JVuiQ2oVucnvn87AKSGnO0'
         locale='auto'
-        email='info@vidhub.co'
+        email={this.props.info.email}
         // Note: Enabling either address option will give the user the ability to
         // fill out both. Addresses are sent as a second parameter in the token callback.
         shippingAddress
@@ -100,11 +100,6 @@ export const StripeButton = React.createClass({
         bitcoin
         allowRememberMe
         token={this.onToken}
-        // Note: `reconfigureOnUpdate` should be set to true IFF, for some reason
-        // you are using multiple stripe keys
-        reconfigureOnUpdate={false}
-        // Note: you can change the event to `onTouchTap`, `onClick`, `onTouchStart`
-        // useful if you're using React-Tap-Event-Plugin
         >
         <Button>
           Buy
