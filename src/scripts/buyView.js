@@ -2,6 +2,7 @@ import React from 'react'
 import StripeCheckout from 'react-stripe-checkout'
 import { Button } from 'react-bootstrap'
 import STORE from './store'
+import { Item } from './viewAllItems'
 
 export const StripeButton = React.createClass({
   onToken (token) {
@@ -20,7 +21,7 @@ export const StripeButton = React.createClass({
   render () {
     return (
       <StripeCheckout
-        name='Three Comma Co.'
+        name={Item.props.attributes.get('name')}
         description='Big Data Stuff'
         ComponentClass='div'
         panelLabel='Give Money'
