@@ -5,6 +5,7 @@ import init from './init'
 import HomePage from './homePage'
 import { RegisterPage } from './registerView'
 import { AllItemsPage } from './viewAllItems'
+import { BuyPage } from './buyView'
 
 const app = function () {
   let BikeRouter = Backbone.Router.extend({
@@ -13,6 +14,7 @@ const app = function () {
       'register': 'renderRegisterPage',
       'sell': 'renderSellPage',
       'allitems': 'renderViewAllItems',
+      'buy': 'renderBuyPage',
       '*default': 'renderHomePage'
     },
     renderHomePage () {
@@ -23,6 +25,9 @@ const app = function () {
     },
     renderViewAllItems () {
       ReactDOM.render(< AllItemsPage / >, document.querySelector('.container'))
+    },
+    renderBuyPage () {
+      ReactDOM.render(< BuyPage />, document.querySelector('.container'))
     }
   })
   new BikeRouter()

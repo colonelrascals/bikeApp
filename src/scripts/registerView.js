@@ -7,7 +7,7 @@ import { Header } from './header'
 export const RegisterPage = React.createClass({
   render () {
     return (
-      <div className='center-block'>
+      <div>
         <Header />
         <NavBar />
         <LoginComponent />

@@ -54,6 +54,8 @@
     "passport-local": "^1.0.0",
     "react": "^15.1.0",
     "react-bootstrap": "^0.30.8",
-    "react-dom": "^15.1.0"
+    "react-dom": "^15.1.0",
+    "react-stripe-checkout": "^2.2.5",
+    "stripe": "^4.17.1"
   }
 }

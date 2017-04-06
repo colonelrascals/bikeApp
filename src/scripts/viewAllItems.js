@@ -4,6 +4,7 @@ import { Header } from './header'
 import ACTION from './actions'
 import STORE from './store'
 import { Col, Thumbnail, Button } from 'react-bootstrap'
+import { StripeButton } from './buyView'
 
 export const AllItemsPage = React.createClass({
   componentWillMount () {
@@ -53,7 +54,8 @@ export const Item = React.createClass({
             <p>{this.props.itemModel.get('description').substr(0, 10)}</p>
             <h4>${this.props.itemModel.get('price')}</h4>
             <p>
-              <Button bsStyle='success' block>Buy Now</Button>
+              <Button bsStyle='primary' href='#' >More Info</Button>
+              <StripeButton />
             </p>
           </Thumbnail>
         </Col>
