@@ -13,7 +13,7 @@ const app = function () {
       'home': 'renderHomePage',
       'register': 'renderRegisterPage',
       'sell': 'renderSellPage',
-      'allitems': 'renderViewAllItems',
+      'item': 'renderViewAllItems',
       'buy': 'renderBuyPage',
       '*default': 'renderHomePage'
     },

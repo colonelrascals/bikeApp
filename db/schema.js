@@ -34,6 +34,14 @@ const usersSchema = new mongoose.Schema({
 })
 
 const itemSchema = new mongoose.Schema({
+  seller: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  sellerName: {
+    type: mongoose.Schema.Types.ObjectId.name,
+    ref: 'User'
+  },
   make: {
     type: String,
     required: true
