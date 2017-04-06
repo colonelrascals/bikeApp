@@ -1,6 +1,8 @@
 import React from 'react'
 import STORE from './store'
 import User from './models/userModel'
+import Backbone from 'backbone'
+import { ItemModel, ItemCollection } from './models/itemModel'
 import $ from 'jquery'
 
 const ACTIONS = {
@@ -40,6 +42,29 @@ const ACTIONS = {
       console.log('bad email')
       document.querySelector('.registerEmailRejection').innerHTML = 'Invalid email address'
     }
+  },
+  addListing (itemData) {
+    var newItem = new ItemModel(itemData)
+
+    newItem.save()
+      .then(
+        (response) => {
+          console.log(response)
+          ACTION.fetchAllItems()
+        },
+        (err) => {
+          alert('problem saving your product')
+        }
+      )
+  },
+  fetchAllItems () {
+    var itemColl = STORE.get('ItemCollection')
+    itemColl.fetch()
+      .then(function () {
+        STORE.set({
+          ItemCollection: itemColl
+        })
+      })
   }
 
 }

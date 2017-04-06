@@ -1,17 +1,17 @@
 import Backbone from 'backbone'
-import { ItemCollection } from './models/itemModel'
+import { ItemCollection, ItemModel } from './models/itemModel'
 import { UserCollection } from './models/userModel'
 
 const STORE = Object.assign({}, Backbone.Events, {
 
   data: {
-    items: new ItemCollection(),
+    ItemCollection: new ItemCollection(),
     userCollection: new UserCollection(),
     userLoginStatus: 'Log In'
   },
 
   get: function (prop) {
-    if (this.data.items === undefined) {
+    if (this.data.ItemCollection === undefined) {
       throw new Error('the store does not have a property called: ', +prop)
     }
     return this.data[prop]
