@@ -38,10 +38,6 @@ const itemSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
-  sellerName: {
-    type: mongoose.Schema.Types.ObjectId.name,
-    ref: 'User'
-  },
   make: {
     type: String,
     required: true

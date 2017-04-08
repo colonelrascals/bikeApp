@@ -1,30 +1,27 @@
-const checkAuth = function(req, res, next){
-  if(!req.user) {
-    res.status(400).send( 'no authenticated user for current session' )
-  }
-  else next()
+const checkAuth = function (req, res, next) {
+  if (!req.user) {
+    res.status(400).send('no authenticated user for current session')
+  } else next()
 }
 
-const errorHandler = function(err, req, res, next) {
+const errorHandler = function (err, req, res, next) {
   console.log(err)
-  res.render(err);
-  return
-} 
+  res.render(err)
+}
 
-const cookifyUser = function(req,res,next) {
+const cookifyUser = function (req, res, next) {
   if (req.user) {
-    res.cookie(global.PROJECT_NAME + '_user',JSON.stringify(req.user))
+    res.cookie(global.PROJECT_NAME + '_user', JSON.stringify(req.user))
     res.cookie('tiy_full_stack_app_name', global.PROJECT_NAME)
     next()
-  }
-  else {
-    res.cookie(global.PROJECT_NAME + '_user','null')
+  } else {
+    res.cookie(global.PROJECT_NAME + '_user', 'null')
     res.cookie('tiy_full_stack_app_name', global.PROJECT_NAME)
     next()
   }
 }
 
-const parseQuery = function(req,res,next) {
+const parseQuery = function (req, res, next) {
   if (req.query) {
     for (var prop in req.query) {
       if (prop[0] === '$') {
@@ -35,6 +32,14 @@ const parseQuery = function(req,res,next) {
   }
   next()
 }
+const parseRegEx = function (request, response, next) {
+  for (var prop in request.query) {
+    if (request.query[prop][0] === '/' && request.query[prop].slice(-1) === '/') {
+     // if the string is wrapped in /s
+      request.query[prop] = new RegExp(request.query[prop].slice(1, -1))
+    }
+  }
+}
 
 module.exports = {
   checkAuth: checkAuth,
@@ -42,4 +47,3 @@ module.exports = {
   cookifyUser: cookifyUser,
   parseQuery: parseQuery
 }
-

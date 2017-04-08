@@ -55,15 +55,6 @@ apiRouter
       response.json(record)
     })
   })
-  .post('/item', (req, response) => {
-    var newItem = new Item(req.body)
-    newItem.save((err, record) => {
-      if (err) {
-        return response.status(400).json(err)
-      }
-      response.json(record)
-    })
-  })
 apiRouter
   .put('/item/:_id', (req, response) => {
     Item.findByIdAndUpdate(req.params._id, req.body, (err, record) => {
@@ -84,6 +75,16 @@ apiRouter
       })
     })
   })
+apiRouter
+    .post('/item/sell', (req, response) => {
+      var newItem = new Item(req.body)
+      newItem.save((err, record) => {
+        if (err) {
+          return response.status(400).json(err)
+        }
+        response.json(record)
+      })
+    })
 
 module.exports = apiRouter
 

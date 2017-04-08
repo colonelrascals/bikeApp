@@ -3,6 +3,7 @@ import STORE from './store'
 import User from './models/userModel'
 import Backbone from 'backbone'
 import { ItemModel, ItemCollection } from './models/itemModel'
+import { StripeCollection } from './models/stripModel'
 import $ from 'jquery'
 
 const ACTIONS = {
@@ -65,8 +66,23 @@ const ACTIONS = {
           ItemCollection: itemColl
         })
       })
-  }
+  },
 
+  loggedInStatus: function () {
+    console.log(User.getCurrentUser())
+    if (User.getCurrentUser() != null) {
+      STORE.set({userLoginStatus: 'Log Out'})
+      console.log(STORE.data.userLoginStatus)
+
+      return 'Log Out'
+    } else {
+      STORE.set({userLoginStatus: 'Log In'})
+      console.log(STORE.data.userLoginStatus)
+
+      return 'Log In'
+    }
+  }
 }
+ACTIONS.loggedInStatus()
 
 export default ACTIONS

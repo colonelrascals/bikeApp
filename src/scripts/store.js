@@ -1,12 +1,19 @@
 import Backbone from 'backbone'
 import { ItemCollection, ItemModel } from './models/itemModel'
 import { UserCollection } from './models/userModel'
+import { StripeModel, StripeCollection } from './models/stripModel'
 
 const STORE = Object.assign({}, Backbone.Events, {
 
   data: {
     ItemCollection: new ItemCollection(),
     userCollection: new UserCollection(),
+    stripeLoading: true,
+    stripeLoadingError: false,
+    submitDisabled: false,
+    paymentError: null,
+    paymentComplete: false,
+    token: null,
     userLoginStatus: 'Log In'
   },
 

@@ -3,7 +3,26 @@ import STORE from './store'
 import { Nav, Navbar, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
 
 export const NavBar = React.createClass({
+  componentWillMount () {
+    STORE.on('dataUpdated', () => {
+      this.setState(STORE.data)
+    })
+  },
+
+  componentWillUnmount () {
+    STORE.off('dataUpdated')
+  },
+
+  getInitialState () {
+    return STORE.data
+  },
+
+  handleLogout: function () {
+    ACTIONS.loggedInStatus()
+    ACTIONS.logoutUser()
+  },
   render () {
+    console.log(this)
     return (
       <Navbar>
         <Nav bsStyle='tabs' activeKey='1' onSelect={this.handleSelect}>
@@ -19,6 +38,7 @@ export const NavBar = React.createClass({
             <MenuItem eventKey='5.1'>Settings</MenuItem>
             <MenuItem eventKey='5.2'>Log Out</MenuItem>
           </NavDropdown>
+          <NavItem onClick={this.handleLogout}>{this.state.userLoginStatus}</NavItem>
         </Nav>
       </Navbar>
     )

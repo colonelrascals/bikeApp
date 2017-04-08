@@ -3,8 +3,8 @@ import { NavBar } from './navBar'
 import { Header } from './header'
 import ACTION from './actions'
 import STORE from './store'
+import PaymentForm from './models/stripeForm'
 import { Col, Thumbnail, Button } from 'react-bootstrap'
-import StripeCheckout from 'react-stripe-checkout'
 
 export const AllItemsPage = React.createClass({
   componentWillMount () {
@@ -18,11 +18,11 @@ export const AllItemsPage = React.createClass({
     return STORE.data
   },
   render () {
-    console.log(this.state)
     return (
       <div>
         <Header />
         <NavBar />
+        <h1>Happy Almost Birthday</h1>
         <CurrentItems items={this.state.ItemCollection} />
       </div>
     )
@@ -33,7 +33,6 @@ export const CurrentItems = React.createClass({
     return <Item itemModel={model} key={model.id} />
   },
   render () {
-    console.log(this.props)
     return (
       <div>
         {this.props.items.map(this._makeItem)}
@@ -42,8 +41,10 @@ export const CurrentItems = React.createClass({
   }
 })
 export const Item = React.createClass({
+  _showForm () {
+    return console.log('hello')
+  },
   render () {
-    console.log(this.props.itemModel)
     return (
       <div>
         <Col xs={6} md={4}>
@@ -55,56 +56,11 @@ export const Item = React.createClass({
             <h4>${this.props.itemModel.get('price')}</h4>
             <p>
               <Button bsStyle='primary' href='#' >More Info</Button>
-              <StripeButton info={this.props.itemModel.attributes.seller} />
+              <Button onClick={this._showForm}>Buy</Button>
             </p>
           </Thumbnail>
         </Col>
       </div>
-    )
-  }
-})
-export const StripeButton = React.createClass({
-  onToken (token) {
-    fetch('/save-stripe-token', {
-      method: 'POST',
-      body: JSON.stringify(token)
-    }).then(response => {
-      response.json().then(data => {
-        alert(`We are in business, ${data.email}`)
-      })
-    })
-  },
-
-  // ...
-
-  render () {
-    console.log(this.props.info)
-    return (
-      <StripeCheckout
-        name={this.props.info.name}
-        description='Big Data Stuff'
-        ComponentClass='div'
-        panelLabel='Pay'
-        currency='USD'
-        stripeKey='pk_test_d4JVuiQ2oVucnvn87AKSGnO0'
-        locale='auto'
-        email={this.props.info.email}
-        // Note: Enabling either address option will give the user the ability to
-        // fill out both. Addresses are sent as a second parameter in the token callback.
-        shippingAddress
-        billingAddress={false}
-        // Note: enabling both zipCode checks and billing or shipping address will
-        // cause zipCheck to be pulled from billing address (set to shipping if none provided).
-        zipCode={false}
-        alipay
-        bitcoin
-        allowRememberMe
-        token={this.onToken}
-        >
-        <Button>
-          Buy
-        </Button>
-      </StripeCheckout>
     )
   }
 })
