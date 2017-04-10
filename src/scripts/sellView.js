@@ -3,11 +3,16 @@ import ACTIONS from './actions'
 import STORE from './store'
 import NavBar from './navBar'
 import Header from './header'
+import StripeButton from './StripeButton'
 
-export const sellView = React.createClass({
+const SellView = React.createClass({
   render () {
     return (
-      <div />
+      <div >
+        <StripeButton />
+      </div>
     )
   }
 })
+
+export default SellView

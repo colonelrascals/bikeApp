@@ -1,6 +1,6 @@
 import Backbone from 'backbone'
 import { ItemCollection, ItemModel } from './models/itemModel'
-import { UserCollection } from './models/userModel'
+import { UserCollection, User } from './models/userModel'
 import { StripeModel, StripeCollection } from './models/stripModel'
 
 const STORE = Object.assign({}, Backbone.Events, {
@@ -8,6 +8,7 @@ const STORE = Object.assign({}, Backbone.Events, {
   data: {
     ItemCollection: new ItemCollection(),
     userCollection: new UserCollection(),
+    user: User,
     stripeLoading: true,
     stripeLoadingError: false,
     submitDisabled: false,

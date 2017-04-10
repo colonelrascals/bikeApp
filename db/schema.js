@@ -29,8 +29,11 @@ const usersSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now
-  }
-
+  },
+  stripe_user_id: {type: String},
+  stripe_publishable_key: {type: String},
+  refresh_token: {type: String},
+  access_token: {type: String}
 })
 
 const itemSchema = new mongoose.Schema({

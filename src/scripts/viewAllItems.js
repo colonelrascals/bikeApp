@@ -3,8 +3,8 @@ import { NavBar } from './navBar'
 import { Header } from './header'
 import ACTION from './actions'
 import STORE from './store'
-import PaymentForm from './models/stripeForm'
 import { Col, Thumbnail, Button } from 'react-bootstrap'
+import $ from 'jquery'
 
 export const AllItemsPage = React.createClass({
   componentWillMount () {
@@ -44,7 +44,11 @@ export const Item = React.createClass({
   _showForm () {
     return console.log('hello')
   },
+  onToken () {
+    return this.props.itemModel.get('seller').access_token
+  },
   render () {
+    console.log(this.props.itemModel)
     return (
       <div>
         <Col xs={6} md={4}>
@@ -56,7 +60,7 @@ export const Item = React.createClass({
             <h4>${this.props.itemModel.get('price')}</h4>
             <p>
               <Button bsStyle='primary' href='#' >More Info</Button>
-              <Button onClick={this._showForm}>Buy</Button>
+              <Button bsStyle='success' onClick={this._handlePayment}>Buy</Button>
             </p>
           </Thumbnail>
         </Col>
@@ -64,3 +68,5 @@ export const Item = React.createClass({
     )
   }
 })
+
+// stripeKey={this.props.itemModel.attributes.seller.get('stripe_publishable_key')} token={this.props.itemModel.attributes.seller.get('sk_test_JuUlJtrMH9W8a8tpvdgI9RDn')}

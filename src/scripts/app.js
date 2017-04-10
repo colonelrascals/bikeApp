@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import Backbone from 'backbone'
 import init from './init'
 import HomePage from './homePage'
+import SellView from './sellView'
+
 import { RegisterPage } from './registerView'
 import { AllItemsPage } from './viewAllItems'
 import { BuyPage } from './buyView'
@@ -20,8 +22,16 @@ const app = function () {
     renderHomePage () {
       ReactDOM.render(< HomePage / >, document.querySelector('.container'))
     },
+    // renderPaymentConfirmation (queryString) {
+    //   var queryObj = parseQuery(queryString),
+    //     code = queryObj.code
+    //   ReactDOM.render(< PaymentConfirmationPage />, document.querySelector('.container'))
+    // },
     renderRegisterPage () {
       ReactDOM.render(< RegisterPage / >, document.querySelector('.container'))
+    },
+    renderSellPage () {
+      ReactDOM.render(< SellView />, document.querySelector('.container'))
     },
     renderViewAllItems () {
       ReactDOM.render(< AllItemsPage / >, document.querySelector('.container'))

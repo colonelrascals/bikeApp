@@ -1,3 +1,4 @@
 module.exports = {
-	sessionSecret: 'friendship'
+  sessionSecret: 'friendship',
+  client_secret: 'sk_test_B7TsYERO2od3Zwa9hLagSmUA'
 }
