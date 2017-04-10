@@ -4,7 +4,7 @@ import { Header } from './header'
 import ACTION from './actions'
 import STORE from './store'
 import { Col, Thumbnail, Button } from 'react-bootstrap'
-import $ from 'jquery'
+import { Payment } from './paymentModal'
 
 export const AllItemsPage = React.createClass({
   componentWillMount () {
@@ -22,7 +22,7 @@ export const AllItemsPage = React.createClass({
       <div>
         <Header />
         <NavBar />
-        <h1>Happy Almost Birthday</h1>
+        <Payment />
         <CurrentItems items={this.state.ItemCollection} />
       </div>
     )
@@ -47,6 +47,12 @@ export const Item = React.createClass({
   onToken () {
     return this.props.itemModel.get('seller').access_token
   },
+  close (ectObj) {
+    STORE.set({ showModal: false })
+  },
+  open (evtObj) {
+    STORE.set({showModal: true})
+  },
   render () {
     console.log(this.props.itemModel)
     return (
@@ -60,7 +66,7 @@ export const Item = React.createClass({
             <h4>${this.props.itemModel.get('price')}</h4>
             <p>
               <Button bsStyle='primary' href='#' >More Info</Button>
-              <Button bsStyle='success' onClick={this._handlePayment}>Buy</Button>
+              <Button bsStyle='success' onClick={this.open}>Buy</Button>
             </p>
           </Thumbnail>
         </Col>

@@ -9,13 +9,8 @@ const STORE = Object.assign({}, Backbone.Events, {
     ItemCollection: new ItemCollection(),
     userCollection: new UserCollection(),
     user: User,
-    stripeLoading: true,
-    stripeLoadingError: false,
-    submitDisabled: false,
-    paymentError: null,
-    paymentComplete: false,
-    token: null,
-    userLoginStatus: 'Log In'
+    userLoginStatus: 'Log In',
+    showModal: false
   },
 
   get: function (prop) {
