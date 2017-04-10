@@ -38,30 +38,4 @@ stripeRouter.get('/code', function (req, res) {
     })
   }
 })
-stripeRouter.post('/charge', function (req, res) {
-  var TOKEN = req.body.token // Stripe charge token
-  var CENTS_PRICE = req.body.price // Stripe price in cents
-  var CONNECTED_ID = req.body.stripeId // Stripe Connect platform user ID
-  var APP_FEE = req.body.storegrafiFee
-
-  var charge = stripe.charges.create({
-    amount: CENTS_PRICE, // amount in cents, again
-    currency: 'usd',
-    source: TOKEN,
-    description: 'Storegrafi order',
-    application_fee: APP_FEE // Platform fee in cents (2%)
-  }, {stripe_account: CONNECTED_ID},
-
-    function (err, charge) {
-      if (err && err.type === 'StripeCardError') {
-        console.log('HERE IS THE STRIPE ERROR>>>', err)
-        res.send(err)
-      }
-
-      console.log('HERE IS THE STRIPE CHARGE>>>', charge)
-      res.json(charge)
-    }
-  )
-})
-
 module.exports = stripeRouter
