@@ -3,7 +3,6 @@ import STORE from './store'
 import User from './models/userModel'
 import Backbone from 'backbone'
 import { ItemModel, ItemCollection } from './models/itemModel'
-import { StripeCollection } from './models/stripModel'
 import $ from 'jquery'
 
 const ACTIONS = {
@@ -12,13 +11,12 @@ const ACTIONS = {
       User.login(email, password)
       .done(
         function (response) {
-          
           location.hash = 'home'
         }
         )
       .fail(
         function (error) {
-          
+
         }
         )
     } else {
@@ -30,17 +28,15 @@ const ACTIONS = {
       User.register(formData)
       .done(
         function (response) {
-          
           ACTIONS.loginUser(formData.email, formData.password)
         }
         )
       .fail(
         function (error) {
-          
+
         }
         )
     } else {
-      
       document.querySelector('.registerEmailRejection').innerHTML = 'Invalid email address'
     }
   },
@@ -50,7 +46,6 @@ const ACTIONS = {
     newItem.save()
       .then(
         (response) => {
-          
           ACTION.fetchAllItems()
         },
         (err) => {
@@ -69,15 +64,12 @@ const ACTIONS = {
   },
 
   loggedInStatus: function () {
-    
     if (User.getCurrentUser() != null) {
       STORE.set({userLoginStatus: 'Log Out'})
-      
 
       return 'Log Out'
     } else {
       STORE.set({userLoginStatus: 'Log In'})
-      
 
       return 'Log In'
     }
@@ -87,7 +79,7 @@ const ACTIONS = {
   },
   open (evtObj) {
     STORE.set({showModal: true})
-  },
+  }
 
 }
 ACTIONS.loggedInStatus()

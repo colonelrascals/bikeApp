@@ -45,12 +45,12 @@ stripeRouter.post('/charge', function (req, res) {
   var tokenId = req.body.tokenId // Stripe charge token
   var CENTS_PRICE = req.body.price // Stripe price in cents
   var CONNECTED_ID = req.body.stripeUserId// Stripe Connect platform user ID
-  var APP_FEE = 500 /// calculated either as flat fee or percentage of price
+  var APP_FEE = req.body.myFee /// calculated either as flat fee or percentage of price
   var data = {
     amount: CENTS_PRICE, // amount in cents, again
     currency: 'usd',
     source: tokenId,
-    description: 'Storegrafi order',
+    description: 'order',
     application_fee: APP_FEE // Platform fee in cents (2%)
   }
   console.log('##DATA##', data)

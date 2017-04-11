@@ -50,8 +50,9 @@ export const Item = React.createClass({
 
     var data = {
       tokenId: token.id,
-      price: this.props.itemModel.get('price'),
-      stripeUserId: this.props.itemModel.get('seller').stripe_user_id
+      price: Math.floor(this.props.itemModel.get('price') * 100),
+      stripeUserId: this.props.itemModel.get('seller').stripe_user_id,
+      myFee: Math.floor(this.props.itemModel.get('price') * 2)
     }
     console.log(JSON.stringify(data))
     fetch('/stripe/charge', {
@@ -88,7 +89,7 @@ export const Item = React.createClass({
                 email={this.props.itemModel.get('seller').email}
                 stripe_account={this.props.itemModel.get('seller').stripe_user_id}
                 description='Big Data Stuff'
-                amount={1000000}
+                amount={Math.floor(this.props.itemModel.get('price') * 100)}
                 currency='USD'
                 shippingAddress
                 billingAddress

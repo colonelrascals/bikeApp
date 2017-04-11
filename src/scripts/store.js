@@ -1,7 +1,6 @@
 import Backbone from 'backbone'
 import { ItemCollection, ItemModel } from './models/itemModel'
 import { UserCollection, User } from './models/userModel'
-import { StripeModel, StripeCollection } from './models/stripModel'
 
 const STORE = Object.assign({}, Backbone.Events, {
 
