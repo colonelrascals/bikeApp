@@ -81,7 +81,8 @@ export const Item = React.createClass({
             <p>{this.props.itemModel.get('description').substr(0, 10)}</p>
             <h4>${this.props.itemModel.get('price')}</h4>
             <p>
-              <Button bsStyle='primary' href='#' >More Info</Button>
+              <Button bsStyle='primary' href='#' block>More Info</Button>
+
               <StripeCheckout
                 stripeKey={this.props.itemModel.get('seller').stripe_publishable_key}
                 token={this.onToken}
@@ -99,11 +100,12 @@ export const Item = React.createClass({
                 allowRememberMe
 
                 reconfigureOnUpdate>
-                <Button >
+
+                <Button bsStyle='success' block>
                  Buy Me
                 </Button>
+
               </StripeCheckout>
-              <Button bsStyle='success' onClick={ACTION.open}>Buy</Button>
             </p>
           </Thumbnail>
         </Col>
