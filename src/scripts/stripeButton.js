@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class StripeButton extends Component {
+const StripeButton = React.createClass {
   render () {
     return (
       <div>

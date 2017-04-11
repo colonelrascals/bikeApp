@@ -20,7 +20,7 @@ const app = function () {
       '*default': 'renderHomePage'
     },
     renderHomePage () {
-      ReactDOM.render(< HomePage / >, document.querySelector('.container'))
+      ReactDOM.render(<HomePage/>, document.querySelector('.container'))
     },
     // renderPaymentConfirmation (queryString) {
     //   var queryObj = parseQuery(queryString),
@@ -28,16 +28,16 @@ const app = function () {
     //   ReactDOM.render(< PaymentConfirmationPage />, document.querySelector('.container'))
     // },
     renderRegisterPage () {
-      ReactDOM.render(< RegisterPage / >, document.querySelector('.container'))
+      ReactDOM.render(<RegisterPage/>, document.querySelector('.container'))
     },
     renderSellPage () {
-      ReactDOM.render(< SellView />, document.querySelector('.container'))
+      ReactDOM.render(<SellView/>, document.querySelector('.container'))
     },
     renderViewAllItems () {
-      ReactDOM.render(< AllItemsPage / >, document.querySelector('.container'))
+      ReactDOM.render(<AllItemsPage/>, document.querySelector('.container'))
     },
     renderBuyPage () {
-      ReactDOM.render(< BuyPage />, document.querySelector('.container'))
+      ReactDOM.render(<BuyPage />, document.querySelector('.container'))
     }
   })
   new BikeRouter()
