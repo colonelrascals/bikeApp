@@ -8,10 +8,8 @@ import { Payment } from './paymentModal'
 import StripeCheckout from 'react-stripe-checkout'
 import {CheckoutButton} from './checkoutButton'
 
-
 export const AllItemsPage = React.createClass({
   componentWillMount () {
-    
     ACTION.fetchAllItems()
     STORE.on('dataUpdated', () => {
       this.setState(STORE.data)
@@ -45,20 +43,33 @@ export const CurrentItems = React.createClass({
 })
 export const Item = React.createClass({
   _showForm () {
-    return 
+
   },
   onToken (token) {
+    console.log(token, JSON.stringify(token))
+
+    var data = {
+      tokenId: token.id,
+      price: this.props.itemModel.get('price'),
+      stripeUserId: this.props.itemModel.get('seller').stripe_user_id
+    }
+    console.log(JSON.stringify(data))
     fetch('/stripe/charge', {
       method: 'POST',
-      body: JSON.stringify(token),
+      body: JSON.stringify(data),
+      headers: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json'
+      }
     }).then(response => {
-      response.json().then(data => {
-        alert('We are in business');
-      });
-    });
+      return response.json()
+    })
+      .then(resp => {
+        console.log(resp)
+        alert('we are in business')
+      })
   },
   render () {
-    
     return (
       <div>
         <Col xs={6} md={4}>
@@ -70,9 +81,12 @@ export const Item = React.createClass({
             <h4>${this.props.itemModel.get('price')}</h4>
             <p>
               <Button bsStyle='primary' href='#' >More Info</Button>
-              <StripeCheckout stripeKey={this.props.itemModel.get('seller').stripe_publishable_key} token={this.onToken} name={this.props.itemModel.get('seller').name}
+              <StripeCheckout
+                stripeKey={this.props.itemModel.get('seller').stripe_publishable_key}
+                token={this.onToken}
+                name={this.props.itemModel.get('seller').name}
                 email={this.props.itemModel.get('seller').email}
-
+                stripe_account={this.props.itemModel.get('seller').stripe_user_id}
                 description='Big Data Stuff'
                 amount={1000000}
                 currency='USD'
@@ -96,4 +110,3 @@ export const Item = React.createClass({
     )
   }
 })
-

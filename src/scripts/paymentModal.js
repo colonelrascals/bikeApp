@@ -4,35 +4,31 @@ import STORE from './store'
 import ACTION from './actions'
 import { PaymentForm } from './stripeForm'
 
-import ReactScriptLoader from 'react-script-loader';
+import ReactScriptLoader from 'react-script-loader'
 
 export const Payment = React.createClass({
   getInitialState () {
     return STORE.data
   },
-  getValidationState() {
-    const length = this.state.inputValue.length;
-    if (length > 10) return 'success';
-    else if (length > 5) return 'warning';
-    else if (length > 0) return 'error';
+  getValidationState () {
+    const length = this.state.inputValue.length
+    if (length > 10) return 'success'
+    else if (length > 5) return 'warning'
+    else if (length > 0) return 'error'
   },
 
-  handleChange(e) {
+  handleChange (e) {
     // this.setState({ inputValue: e.target.value });
     STORE.on('dataUpdated', () => {
       this.setState({ inputValue: e.target.value })
     })
-
   },
 
-  _handleSubmit(event) {
-    
+  _handleSubmit (event) {
     window.formEl = event.target
   },
 
   render () {
-    
-    
     const popover = (
       <Popover id='modal-popover' title='popover'>
           very popover. such engagement
@@ -53,7 +49,7 @@ export const Payment = React.createClass({
           </Modal.Header>
           <Modal.Body>
             <form>
-            <CheckoutForm />
+              <CheckoutForm />
             </form>
           </Modal.Body>
           <Modal.Footer>
@@ -68,26 +64,24 @@ export const Payment = React.createClass({
 const CheckoutForm = React.createClass({
   mixins: [ ReactScriptLoader.ReactScriptLoaderMixin ],
 
-  getScriptURL() {
+  getScriptURL () {
     return 'https://checkout.stripe.com/checkout.js'
   },
 
-  onScriptLoaded() {
+  onScriptLoaded () {
     console.log(' i did it')
   },
 
-  onScriptError() {
+  onScriptError () {
     console.log(':(')
   },
 
-  render() {
+  render () {
     return (
-      <div>
-      </div>
-    );
+      <div />
+    )
   }
-});
-
+})
 
               // <script
               //   src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -97,7 +91,6 @@ const CheckoutForm = React.createClass({
               //   data-description="Widget"
               //   data-image="https ://stripe.com/img/documentation/checkout/marketplace.png"
               //   data-locale="auto">
-
 
               // <div className='form-row'>
               //   <label htmlFor='card-element'>

@@ -3,9 +3,9 @@ const Router = require('express').Router,
   secret = require('../config/secrets.js').client_secret,
   request = require('request'),
   User = require('../db/schema.js').User,
-  stripe = require("stripe")(
-    "sk_test_B7TsYERO2od3Zwa9hLagSmUA"
-  );
+  stripe = require('stripe')(
+    'sk_test_B7TsYERO2od3Zwa9hLagSmUA'
+  )
 
 stripeRouter.get('/code', function (req, res) {
   var code = req.query.code
@@ -22,51 +22,50 @@ stripeRouter.get('/code', function (req, res) {
       form: data
     }, function (stripeErr, stripeResp, stripeBody) {
       if (stripeErr) {
-        
+
       } else {
         // findbyIDandUpdate user model (user obj is stored on req.user, which has property ._id)
-        
+
         let StripeBody = JSON.parse(stripeBody)
         User.findByIdAndUpdate(req.user._id, StripeBody, {new: true}, function (err, record) {
-          
           res.redirect('/#item')
         })
       }
     })
   }
   if (req.query.error) {
-    
     res.json({
       error: req.query.error_description
     })
   }
 })
-stripeRouter.post('/charge', function(req, res){
-    
-  var TOKEN = req.body.access_token // Stripe charge token
+stripeRouter.post('/charge', function (req, res) {
+  console.log(req.body)
+
+  var tokenId = req.body.tokenId // Stripe charge token
   var CENTS_PRICE = req.body.price // Stripe price in cents
-  var CONNECTED_ID = req.body.stripe_user_id// Stripe Connect platform user ID
-  var APP_FEE  /// calculated either as flat fee or percentage of price
-
-
-  var charge = stripe.charges.create({
+  var CONNECTED_ID = req.body.stripeUserId// Stripe Connect platform user ID
+  var APP_FEE = 500 /// calculated either as flat fee or percentage of price
+  var data = {
     amount: CENTS_PRICE, // amount in cents, again
-    currency: "usd",
-    source: TOKEN,
-    description: "Storegrafi order",
-    application_fee: APP_FEE, // Platform fee in cents (2%)
-    }, {stripe_account: CONNECTED_ID},
+    currency: 'usd',
+    source: tokenId,
+    description: 'Storegrafi order',
+    application_fee: APP_FEE // Platform fee in cents (2%)
+  }
+  console.log('##DATA##', data)
+  console.log({stripe_account: CONNECTED_ID})
+  var charge = stripe.charges.create(data, {stripe_account: CONNECTED_ID},
 
-    function(err, charge) {
-      
-      if (err && err.type === 'StripeCardError') {
-        
-        res.send(err)
+    function (err, charge) {
+      if (err) {
+        console.log(err)
+        return res.json({
+          err: err
+        })
       }
 
-      
       res.json(charge)
-
     }
   )
 })
