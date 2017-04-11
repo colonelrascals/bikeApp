@@ -12,13 +12,13 @@ const ACTIONS = {
       User.login(email, password)
       .done(
         function (response) {
-          console.log('login success', response)
+          
           location.hash = 'home'
         }
         )
       .fail(
         function (error) {
-          console.log('login fail', error)
+          
         }
         )
     } else {
@@ -30,17 +30,17 @@ const ACTIONS = {
       User.register(formData)
       .done(
         function (response) {
-          console.log('register success', response)
+          
           ACTIONS.loginUser(formData.email, formData.password)
         }
         )
       .fail(
         function (error) {
-          console.log('register fail', error)
+          
         }
         )
     } else {
-      console.log('bad email')
+      
       document.querySelector('.registerEmailRejection').innerHTML = 'Invalid email address'
     }
   },
@@ -50,7 +50,7 @@ const ACTIONS = {
     newItem.save()
       .then(
         (response) => {
-          console.log(response)
+          
           ACTION.fetchAllItems()
         },
         (err) => {
@@ -69,19 +69,26 @@ const ACTIONS = {
   },
 
   loggedInStatus: function () {
-    console.log(User.getCurrentUser())
+    
     if (User.getCurrentUser() != null) {
       STORE.set({userLoginStatus: 'Log Out'})
-      console.log(STORE.data.userLoginStatus)
+      
 
       return 'Log Out'
     } else {
       STORE.set({userLoginStatus: 'Log In'})
-      console.log(STORE.data.userLoginStatus)
+      
 
       return 'Log In'
     }
-  }
+  },
+  close (evtObj) {
+    STORE.set({ showModal: false })
+  },
+  open (evtObj) {
+    STORE.set({showModal: true})
+  },
+
 }
 ACTIONS.loggedInStatus()
 

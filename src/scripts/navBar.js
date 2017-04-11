@@ -5,7 +5,7 @@ import { Nav, Navbar, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
 
 export const NavBar = React.createClass({
   componentWillMount () {
-    STORE.on('all', () => {
+    STORE.on('dataUpdated', () => {
       this.setState(STORE.data)
     })
   },
@@ -23,7 +23,7 @@ export const NavBar = React.createClass({
     ACTIONS.logoutUser()
   },
   render () {
-    console.log(this)
+    
     return (
       <Navbar>
         <Nav bsStyle='tabs' activeKey='1' onSelect={this.handleSelect}>

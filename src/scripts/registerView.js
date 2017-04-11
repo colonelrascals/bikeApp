@@ -25,7 +25,7 @@ const LoginComponent = React.createClass({
       email: formEl.email.value.toString(),
       password: formEl.password.value.toString()
     }
-    console.log(formEl)
+    
     ACTIONS.loginUser(formEl.email.value, formEl.password.value)
     formEl.reset()
   },
@@ -81,7 +81,7 @@ const RegisterComponent = React.createClass({
       location: formEl.location.value
     }
     ACTIONS.registerUser(formData)
-    console.log('logging in')
+    
     formEl.reset()
   },
   render () {

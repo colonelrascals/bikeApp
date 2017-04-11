@@ -5,7 +5,7 @@ const checkAuth = function (req, res, next) {
 }
 
 const errorHandler = function (err, req, res, next) {
-  console.log(err)
+  
   res.render(err)
 }
 

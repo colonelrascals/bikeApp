@@ -69,5 +69,5 @@ app.use('/stripe', stripeRouter)
 app.use(appMiddleWare.errorHandler)
 
 app.listen(PORT, function () {
-  console.log('\n\n===== listening for requests on port ' + PORT + ' =====\n\n')
+  
 })

@@ -5,10 +5,13 @@ import ACTION from './actions'
 import STORE from './store'
 import { Col, Thumbnail, Button } from 'react-bootstrap'
 import { Payment } from './paymentModal'
+import StripeCheckout from 'react-stripe-checkout'
+import {CheckoutButton} from './checkoutButton'
+
 
 export const AllItemsPage = React.createClass({
   componentWillMount () {
-    console.log(this.state)
+    
     ACTION.fetchAllItems()
     STORE.on('dataUpdated', () => {
       this.setState(STORE.data)
@@ -42,19 +45,20 @@ export const CurrentItems = React.createClass({
 })
 export const Item = React.createClass({
   _showForm () {
-    return console.log('hello')
+    return 
   },
-  onToken () {
-    return this.props.itemModel.get('seller').access_token
-  },
-  close (ectObj) {
-    STORE.set({ showModal: false })
-  },
-  open (evtObj) {
-    STORE.set({showModal: true})
+  onToken (token) {
+    fetch('/stripe/charge', {
+      method: 'POST',
+      body: JSON.stringify(token),
+    }).then(response => {
+      response.json().then(data => {
+        alert('We are in business');
+      });
+    });
   },
   render () {
-    console.log(this.props.itemModel)
+    
     return (
       <div>
         <Col xs={6} md={4}>
@@ -66,7 +70,25 @@ export const Item = React.createClass({
             <h4>${this.props.itemModel.get('price')}</h4>
             <p>
               <Button bsStyle='primary' href='#' >More Info</Button>
-              <Button bsStyle='success' onClick={this.open}>Buy</Button>
+              <StripeCheckout stripeKey={this.props.itemModel.get('seller').stripe_publishable_key} token={this.onToken} name={this.props.itemModel.get('seller').name}
+                email={this.props.itemModel.get('seller').email}
+
+                description='Big Data Stuff'
+                amount={1000000}
+                currency='USD'
+                shippingAddress
+                billingAddress
+                zipCode={false}
+                alipay
+                bitcoin
+                allowRememberMe
+
+                reconfigureOnUpdate>
+                <Button >
+                 Buy Me
+                </Button>
+              </StripeCheckout>
+              <Button bsStyle='success' onClick={ACTION.open}>Buy</Button>
             </p>
           </Thumbnail>
         </Col>
@@ -75,4 +97,3 @@ export const Item = React.createClass({
   }
 })
 
-// stripeKey={this.props.itemModel.attributes.seller.get('stripe_publishable_key')} token={this.props.itemModel.attributes.seller.get('sk_test_JuUlJtrMH9W8a8tpvdgI9RDn')}

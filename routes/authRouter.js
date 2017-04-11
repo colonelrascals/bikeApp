@@ -10,7 +10,7 @@ const authRouter = Router()
 authRouter
   .post('/register', function(req, res){
     // passport appends json-data to request.body
-    // console.log(req.body)
+    // 
     let newUser = new User(req.body)
 
     User.find({email: req.body.email}, function(err, results){
@@ -57,7 +57,7 @@ authRouter
   })  
   .get('/logout', function (req, res) {
     if (req.user) {
-      // console.log(req.user)
+      // 
       let email = req.user.email
       req.logout()
       res.json({

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const StripeButton = React.createClass {
+const StripeButton = React.createClass ({
   render () {
     return (
       <div>
@@ -12,6 +12,5 @@ const StripeButton = React.createClass {
       </div>
     )
   }
-}
-
+})
 export default StripeButton
