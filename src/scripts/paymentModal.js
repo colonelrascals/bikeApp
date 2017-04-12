@@ -2,7 +2,6 @@ import React from 'react'
 import { Popover, Tooltip, Button, Modal, OverlayTrigger, FormGroup, ControlLabel, FormControl, HelpBlock} from 'react-bootstrap'
 import STORE from './store'
 import ACTION from './actions'
-import { PaymentForm } from './stripeForm'
 
 import ReactScriptLoader from 'react-script-loader'
 
