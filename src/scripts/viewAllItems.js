@@ -3,7 +3,7 @@ import { NavBar } from './navBar'
 import { Header } from './header'
 import ACTION from './actions'
 import STORE from './store'
-import { Col, Thumbnail, Button } from 'react-bootstrap'
+import { Col, Thumbnail, Button, ButtonToolbar } from 'react-bootstrap'
 import { Payment } from './paymentModal'
 import StripeCheckout from 'react-stripe-checkout'
 import {CheckoutButton} from './checkoutButton'
@@ -81,7 +81,9 @@ export const Item = React.createClass({
             <p>{this.props.itemModel.get('description').substr(0, 10)}</p>
             <h4>${this.props.itemModel.get('price')}</h4>
             <p>
-              <Button bsStyle='primary' href='#' block>More Info</Button>
+
+              <Button bsStyle='primary' href='#' block >
+              More Info</Button>
 
               <StripeCheckout
                 stripeKey={this.props.itemModel.get('seller').stripe_publishable_key}
@@ -101,11 +103,12 @@ export const Item = React.createClass({
 
                 reconfigureOnUpdate>
 
-                <Button bsStyle='success' block>
+                <Button bsStyle='success'block>
                  Buy Me
                 </Button>
 
               </StripeCheckout>
+
             </p>
           </Thumbnail>
         </Col>
