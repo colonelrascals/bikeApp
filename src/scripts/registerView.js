@@ -3,8 +3,10 @@ import ACTIONS from './actions'
 import {Form, FormGroup, FormControl, Col, Checkbox, Button, ControlLabel} from 'react-bootstrap'
 import { NavBar } from './navBar'
 import { Header } from './header'
+import { STORE } from './store'
 
 export const RegisterPage = React.createClass({
+
   render () {
     return (
       <div>

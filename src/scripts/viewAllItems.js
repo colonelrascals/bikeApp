@@ -4,7 +4,7 @@ import { Header } from './header'
 import ACTION from './actions'
 import STORE from './store'
 import { Col, Thumbnail, Button, ButtonToolbar } from 'react-bootstrap'
-import { Payment } from './paymentModal'
+
 import StripeCheckout from 'react-stripe-checkout'
 import {CheckoutButton} from './checkoutButton'
 

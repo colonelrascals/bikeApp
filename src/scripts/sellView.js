@@ -5,8 +5,25 @@ import { NavBar } from './navBar'
 import { Header } from './header'
 import StripeButton  from './StripeButton'
 import { Form, FormGroup, FormControl, Col, ControlLabel, Checkbox, Button } from 'react-bootstrap'
+import { User } from './models/userModel.js'
+import {FileStackModle} from './filestackModle'
 
 export const SellView = React.createClass({
+  componentWillMount () {
+    STORE.on('dataUpdated', () => {
+      this.setState(STORE.data)
+    })
+
+  },
+
+  componentWillUnmount () {
+    STORE.off('dataUpdated')
+    
+  },
+
+  getInitialState () {
+    return STORE.data
+  },
   _handleSubmit (evtObj) {
     evtObj.preventDefault()
     var formEl = evtObj.target
@@ -18,18 +35,29 @@ export const SellView = React.createClass({
       size: parseInt(formEl.size.value),
       year: parseInt(formEl.year.value),
       description: formEl.description.value,
-      condition: formEl.condition.value,
-      url: formEl.url.value,
-      groupset: formEl.groupset.value
+      condition: parseInt(formEl.condition.value),
+      photoUrl: formEl.url.value,
+      groupSet: formEl.groupset.value,
+      seller:   ``
     }
     ACTIONS.addListing(itemData)
 
   },
+
+  // _addBikeDeet(e) { // use this single generic function (doesn't work, base it on this idea) to update your productinthemaking. can 
+    // thusly update product preview.
+  //   var bikeUpdate = {
+  //     e.target.name: e.target.value
+  //   }
+  //   ACTIONS.updateProductInTheMaking(bikeUpdate)
+  // },
+
   render () {
+    console.log(this)
     return (
     <div >
-        <Header />
-        <NavBar />
+        <Header /> 
+        <NavBar userLoginStatus = {this.state.userLoginStatus} />
         <StripeButton />
         <Form horizontal onSubmit={this._handleSubmit}>
           <FormGroup controlId="formHorizontalText">
@@ -85,7 +113,7 @@ export const SellView = React.createClass({
               Condition
             </Col>
             <Col sm={10}>
-              <FormControl type="text" placeholder="Condition" name='condition'/>
+              <FormControl type="number" placeholder="Condition" name='condition'/>
             </Col>
           </FormGroup>
           <FormGroup controlId="formHorizontalText">
@@ -93,8 +121,8 @@ export const SellView = React.createClass({
               URL
             </Col>
             <Col sm={10}>
-              <FormControl type="text" placeholder="Url" name='url'/>
-            </Col>
+              <FileStackModle />
+            </Col>  
           </FormGroup>
           <FormGroup controlId="formHorizontalText">
             <Col componentClass={ControlLabel} sm={2}>

@@ -1,16 +1,16 @@
 import Backbone from 'backbone'
 import { ItemCollection, ItemModel } from './models/itemModel'
-import { UserCollection, User } from './models/userModel'
+import { User } from './models/userModel'
 
 const STORE = Object.assign({}, Backbone.Events, {
 
   data: {
     ItemCollection: new ItemCollection(),
-    userCollection: new UserCollection(),
-    user: User,
+    userCollection: new User(),
     userLoginStatus: 'Log In',
-    showModal: false,
-    inputValue: ''
+    productToPost: new ItemModel()
+
+
   },
 
   get: function (prop) {

@@ -1,6 +1,5 @@
-import React from 'react'
 import STORE from './store'
-import User from './models/userModel'
+import {User} from './models/userModel'
 import Backbone from 'backbone'
 import { ItemModel, ItemCollection } from './models/itemModel'
 import $ from 'jquery'
@@ -11,7 +10,7 @@ const ACTIONS = {
       User.login(email, password)
       .done(
         function (response) {
-          location.hash = 'item'
+          location.hash = 'home'
         }
         )
       .fail(
@@ -41,6 +40,7 @@ const ACTIONS = {
     }
   },
   addListing (itemData) {
+
     var newItem = new ItemModel(itemData)
     console.log(newItem)
     newItem.save()
@@ -52,6 +52,13 @@ const ACTIONS = {
           alert('problem saving your product')
         }
       )
+  },
+  updateItemModel (itemData){
+    var newItem = STORE.get('productToPost')
+    newItem.set(itemData)  //backbone set method 
+      STORE.set({
+        productToPost: itemData
+      })
   },
   fetchAllItems () {
     var itemColl = STORE.get('ItemCollection')
@@ -73,6 +80,19 @@ const ACTIONS = {
 
       return 'Log In'
     }
+  },
+  logoutUser: function() {
+    User.logout()
+      .done(
+        function(response) {
+          console.log('you logged out', response)
+          ACTIONS.loggedInStatus()
+          location.hash = 'login'
+        })
+      .fail(
+        function(error) {
+          console.log('problem logging out', error)
+        })
   },
   close (evtObj) {
     STORE.set({ showModal: false })
