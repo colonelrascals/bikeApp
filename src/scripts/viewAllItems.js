@@ -23,7 +23,7 @@ export const AllItemsPage = React.createClass({
       <div>
         <Header />
         <NavBar />
-        <Payment />
+
         <CurrentItems items={this.state.ItemCollection} />
       </div>
     )
@@ -42,9 +42,9 @@ export const CurrentItems = React.createClass({
   }
 })
 export const Item = React.createClass({
-  _showForm () {
+  // _showForm () {
 
-  },
+  // },
   onToken (token) {
     console.log(token, JSON.stringify(token))
 
