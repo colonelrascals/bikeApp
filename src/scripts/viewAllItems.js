@@ -6,7 +6,6 @@ import STORE from './store'
 import { Col, Thumbnail, Button, ButtonToolbar } from 'react-bootstrap'
 
 import StripeCheckout from 'react-stripe-checkout'
-import {CheckoutButton} from './checkoutButton'
 
 export const AllItemsPage = React.createClass({
   componentWillMount () {
@@ -19,6 +18,7 @@ export const AllItemsPage = React.createClass({
     return STORE.data
   },
   render () {
+    console.log(this)
     return (
       <div>
         <Header />
@@ -71,6 +71,10 @@ export const Item = React.createClass({
       })
   },
   render () {
+    if (this.props.itemModel.get('seller').stripe_publishable_key.includes('tChP')) { // this is a troubleshooting step
+      console.log(this.props.itemModel.get('description'))
+      return <div />
+    }
     return (
       <div>
         <Col xs={6} md={4}>

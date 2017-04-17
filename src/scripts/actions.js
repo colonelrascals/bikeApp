@@ -81,20 +81,20 @@ const ACTIONS = {
 
       return 'Log In'
     }
+  },
+  logoutUser: function () {
+    User.logout()
+      .done(
+        function (response) {
+          console.log('you logged out', response)
+          ACTIONS.loggedInStatus()
+          location.hash = 'login'
+        })
+      .fail(
+        function (error) {
+          console.log('problem logging out', error)
+        })
   }
-  // logoutUser: function () {
-  //   User.logout()
-  //     .done(
-  //       function (response) {
-  //         console.log('you logged out', response)
-  //         ACTIONS.loggedInStatus()
-  //         location.hash = 'login'
-  //       })
-  //     .fail(
-  //       function (error) {
-  //         console.log('problem logging out', error)
-  //       })
-  // },
   // close (evtObj) {
   //   STORE.set({ showModal: false })
   // },
