@@ -40,7 +40,6 @@ const ACTIONS = {
     }
   },
   addListing (itemData) {
-
     var newItem = new ItemModel(itemData)
     console.log(newItem)
     newItem.save()
@@ -53,12 +52,12 @@ const ACTIONS = {
         }
       )
   },
-  updateItemModel (itemData){
+  updateItemModel (itemAttrs) {
     var newItem = STORE.get('productToPost')
-    newItem.set(itemData)  //backbone set method 
-      STORE.set({
-        productToPost: itemData
-      })
+    newItem.set(itemAttrs)  // backbone set method
+    STORE.set({
+      productToPost: newItem
+    })
   },
   fetchAllItems () {
     var itemColl = STORE.get('ItemCollection')
@@ -69,7 +68,9 @@ const ACTIONS = {
         })
       })
   },
-
+  setProductImage (result) {
+    STORE.set({postingBikeURL: result})
+  },
   loggedInStatus: function () {
     if (User.getCurrentUser() != null) {
       STORE.set({userLoginStatus: 'Log Out'})
@@ -80,26 +81,26 @@ const ACTIONS = {
 
       return 'Log In'
     }
-  },
-  logoutUser: function() {
-    User.logout()
-      .done(
-        function(response) {
-          console.log('you logged out', response)
-          ACTIONS.loggedInStatus()
-          location.hash = 'login'
-        })
-      .fail(
-        function(error) {
-          console.log('problem logging out', error)
-        })
-  },
-  close (evtObj) {
-    STORE.set({ showModal: false })
-  },
-  open (evtObj) {
-    STORE.set({showModal: true})
   }
+  // logoutUser: function () {
+  //   User.logout()
+  //     .done(
+  //       function (response) {
+  //         console.log('you logged out', response)
+  //         ACTIONS.loggedInStatus()
+  //         location.hash = 'login'
+  //       })
+  //     .fail(
+  //       function (error) {
+  //         console.log('problem logging out', error)
+  //       })
+  // },
+  // close (evtObj) {
+  //   STORE.set({ showModal: false })
+  // },
+  // open (evtObj) {
+  //   STORE.set({showModal: true})
+  // }
 
 }
 ACTIONS.loggedInStatus()

@@ -28,6 +28,10 @@ export const SellView = React.createClass({
     evtObj.preventDefault()
     var formEl = evtObj.target
     console.log(formEl)
+    // if (!this._validatePosting()) {
+    //   alert('somethign')
+    //   return
+    // }
     var itemData = {
       make: formEl.make.value,
       model: formEl.model.value,
@@ -36,20 +40,20 @@ export const SellView = React.createClass({
       year: parseInt(formEl.year.value),
       description: formEl.description.value,
       condition: parseInt(formEl.condition.value),
-      photoUrl: formEl.url.value,
+      photoUrl: this.state.postingBikeURL,
       groupSet: formEl.groupset.value,
-      seller:   ``
+      seller: User.getCurrentUser()
     }
     ACTIONS.addListing(itemData)
 
   },
 
   // _addBikeDeet(e) { // use this single generic function (doesn't work, base it on this idea) to update your productinthemaking. can 
-    // thusly update product preview.
+  //   // thusly update product preview.
   //   var bikeUpdate = {
   //     e.target.name: e.target.value
   //   }
-  //   ACTIONS.updateProductInTheMaking(bikeUpdate)
+  //   ACTIONS.updateItemModel(bikeUpdate)
   // },
 
   render () {

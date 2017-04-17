@@ -1,7 +1,7 @@
 import Backbone from 'backbone'
 import $ from 'jquery'
 import {
-	app_name
+  app_name
 } from '../app'
 
 // ..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x
@@ -66,10 +66,11 @@ UserAuthModel.getCurrentUser = function () {
 
 // but, you may extend the UserAuthModel Constructor (which is a Backbone Model)
 export const User = UserAuthModel.extend({
-  initialize: function () {}
+  initialize: function () {
+
+  }
 })
 export var UserCollection = Backbone.Collection.extend({
   model: User,
   url: '/api/users'
 })
-

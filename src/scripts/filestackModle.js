@@ -2,6 +2,8 @@ import React from 'react'
 import filestack from 'filestack-js'
 import { Button } from 'react-bootstrap'
 import Backbone from 'backbone'
+import ACTIONS from './actions.js'
+
 var key = process.env.filestack_key || require('../../config/secrets').filestack_api
 
 import secrets from '../../config/secrets'
@@ -12,7 +14,7 @@ export const FileStackModle = React.createClass({
     client.pick({
       accept: ['image/*']
     }).then(function (result) {
-      ACTIONS.setProductImage(/*whatever*/)
+      ACTIONS.setProductImage(result.filesUploaded[0].url)
     })
   },
 
