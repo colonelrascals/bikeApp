@@ -10,7 +10,6 @@ const STORE = Object.assign({}, Backbone.Events, {
     userLoginStatus: 'Log In',
     productToPost: new ItemModel()
 
-
   },
 
   get: function (prop) {
