@@ -27,7 +27,7 @@ const LoginComponent = React.createClass({
       email: formEl.email.value.toString(),
       password: formEl.password.value.toString()
     }
-    
+
     ACTIONS.loginUser(formEl.email.value, formEl.password.value)
     formEl.reset()
   },
@@ -61,7 +61,7 @@ const LoginComponent = React.createClass({
 
           <FormGroup>
             <Col smOffset={2} sm={10}>
-              <Button type='submit'>
+              <Button type='submit' className='deep-purple darken-2'>
                   Sign in
                 </Button>
             </Col>
@@ -83,7 +83,7 @@ const RegisterComponent = React.createClass({
       location: formEl.location.value
     }
     ACTIONS.registerUser(formData)
-    
+
     formEl.reset()
   },
   render () {
@@ -146,7 +146,7 @@ const RegisterComponent = React.createClass({
 
           <FormGroup>
             <Col smOffset={2} sm={10}>
-              <Button type='submit'>
+              <Button type='submit' className='deep-purple darken-2'>
                 Sign Up
               </Button>
             </Col>

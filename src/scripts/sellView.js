@@ -3,22 +3,21 @@ import ACTIONS from './actions'
 import STORE from './store'
 import { NavBar } from './navBar'
 import { Header } from './header'
-import StripeButton  from './StripeButton'
+import StripeButton from './StripeButton'
 import { Form, FormGroup, FormControl, Col, ControlLabel, Checkbox, Button } from 'react-bootstrap'
 import { User } from './models/userModel.js'
 import {FileStackModle} from './filestackModle'
+import 'materialize-css/js/materialize.js'
 
 export const SellView = React.createClass({
   componentWillMount () {
     STORE.on('dataUpdated', () => {
       this.setState(STORE.data)
     })
-
   },
 
   componentWillUnmount () {
     STORE.off('dataUpdated')
-    
   },
 
   getInitialState () {
@@ -45,10 +44,9 @@ export const SellView = React.createClass({
       seller: User.getCurrentUser()
     }
     ACTIONS.addListing(itemData)
-
   },
 
-  // _addBikeDeet(e) { // use this single generic function (doesn't work, base it on this idea) to update your productinthemaking. can 
+  // _addBikeDeet(e) { // use this single generic function (doesn't work, base it on this idea) to update your productinthemaking. can
   //   // thusly update product preview.
   //   var bikeUpdate = {
   //     e.target.name: e.target.value
@@ -59,101 +57,92 @@ export const SellView = React.createClass({
   render () {
     console.log(this)
     return (
-    <div >
-        <Header /> 
-        <NavBar userLoginStatus = {this.state.userLoginStatus} />
+      <div >
+        <Header />
+        <NavBar userLoginStatus={this.state.userLoginStatus} />
         <StripeButton />
         <Form horizontal onSubmit={this._handleSubmit}>
-          <FormGroup controlId="formHorizontalText">
+          <FormGroup controlId='formHorizontalText'>
             <Col componentClass={ControlLabel} sm={2}>
-              Make    
+              Make
             </Col>
             <Col sm={10}>
-              <FormControl type="text" placeholder="Make" name='make'/>
+              <FormControl type='text' placeholder='Make' name='make' />
             </Col>
           </FormGroup>
-          <FormGroup controlId="formHorizontalText">
+          <FormGroup controlId='formHorizontalText'>
             <Col componentClass={ControlLabel} sm={2}>
               Model
             </Col>
             <Col sm={10}>
-              <FormControl type="text" placeholder="Model" name='model'/>
+              <FormControl type='text' placeholder='Model' name='model' />
             </Col>
           </FormGroup>
-          <FormGroup controlId="formHorizontalNumber">
+          <FormGroup controlId='formHorizontalNumber'>
             <Col componentClass={ControlLabel} sm={2}>
               Price
             </Col>
             <Col sm={10}>
-              <FormControl type="number" placeholder="Price" name='price'/>
+              <FormControl type='number' placeholder='Price' name='price' />
             </Col>
           </FormGroup>
-          <FormGroup controlId="formHorizontalNumber">
+          <FormGroup controlId='formHorizontalNumber'>
             <Col componentClass={ControlLabel} sm={2}>
               Size
             </Col>
             <Col sm={10} >
-              <FormControl type="number" placeholder="Size" name='size'/>
+              <FormControl type='number' placeholder='Size' name='size' />
             </Col>
           </FormGroup>
-          <FormGroup controlId="formHorizontalNumber">
+          <FormGroup controlId='formHorizontalNumber'>
             <Col componentClass={ControlLabel} sm={2}>
               Year
             </Col>
             <Col sm={10}>
-              <FormControl type="number" placeholder="Year" name='year' />
+              <FormControl type='number' placeholder='Year' name='year' />
             </Col>
           </FormGroup>
-          <FormGroup controlId="formHorizontalText">
+          <FormGroup controlId='formHorizontalText'>
             <Col componentClass={ControlLabel} sm={2}>
               Descriptiom
             </Col>
             <Col sm={10}>
-              <FormControl type="text" placeholder="Description" name='description'/>
+              <FormControl type='text' placeholder='Description' name='description' />
             </Col>
           </FormGroup>
-          <FormGroup controlId="formHorizontalText">
+          <FormGroup controlId='formHorizontalText'>
             <Col componentClass={ControlLabel} sm={2}>
               Condition
             </Col>
             <Col sm={10}>
-              <FormControl type="number" placeholder="Condition" name='condition'/>
+              <FormControl type='number' placeholder='Condition' name='condition' />
             </Col>
           </FormGroup>
-          <FormGroup controlId="formHorizontalText">
+          <FormGroup controlId='formHorizontalText'>
             <Col componentClass={ControlLabel} sm={2}>
               URL
             </Col>
             <Col sm={10}>
               <FileStackModle />
-            </Col>  
+            </Col>
           </FormGroup>
-          <FormGroup controlId="formHorizontalText">
+          <FormGroup controlId='formHorizontalText'>
             <Col componentClass={ControlLabel} sm={2}>
               Group Set
             </Col>
             <Col sm={10}>
-              <FormControl type="text" placeholder="Gruppo" name='groupset' />
+              <FormControl type='text' placeholder='Group Set' name='groupset' />
             </Col>
           </FormGroup>
-
           <FormGroup>
             <Col smOffset={2} sm={10}>
-              <Checkbox>Remember me</Checkbox>
-            </Col>
-          </FormGroup>
-
-          <FormGroup>
-            <Col smOffset={2} sm={10}>
-              <Button type="submit">
-                Sign in
+              <Button type='submit' className='deep-purple darken-2'>
+                Submit
               </Button>
             </Col>
           </FormGroup>
         </Form>
       </div>
-  )
+    )
   }
 })
-
-        

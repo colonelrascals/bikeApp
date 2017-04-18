@@ -11,8 +11,10 @@ import secrets from '../../config/secrets'
 export const FileStackModle = React.createClass({
   _handleClick (evtObj) {
     var client = filestack.init(key, { policy: 'policy', signature: 'signature' })
+
     client.pick({
       accept: ['image/*']
+
     }).then(function (result) {
       ACTIONS.setProductImage(result.filesUploaded[0].url)
     })
@@ -21,7 +23,7 @@ export const FileStackModle = React.createClass({
   render: function () {
     return (
       <div>
-        <Button onClick={this._handleClick} />
+        <Button onClick={this._handleClick} className='deep-purple darken-2'>Upload Photo</Button>
       </div>
     )
   }
