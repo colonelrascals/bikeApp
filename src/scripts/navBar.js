@@ -18,8 +18,8 @@ export const NavBar = React.createClass({
       <nav className='deep-purple darken-2'>
         <div className='nav-wrapper'>
 
-          <a href='#' className='brand-logo center'>Bike Shop</a>
-          <a className='dropdown-button left' data-activates='dropdown' data-alignment='right' ><i className='material-icons' >reorder</i></a>
+          <a href='#item' className='brand-logo center'>Bike Shop</a>
+          <a className='dropdown-button left' data-activates='dropdown' data-alignment='right' data-beloworigin='true' ><i className='material-icons' >reorder</i></a>
 
           <ul className='left hide-on-med-and-down'>
             <li><a href='#home'>Home</a></li>
@@ -28,7 +28,7 @@ export const NavBar = React.createClass({
             <li><a href='#sell'>Sell</a></li>
           </ul>
 
-          <ul id='dropdown' className='dropdown-content' data-beloworigin='true' data-stopspropagation='true'>
+          <ul id='dropdown' className='dropdown-content' data-stopspropagation='true'>
             <li><a href='#home' className='deep-purple-text text-darken-2' >Home</a></li>
             <li><a href='#register' className='deep-purple-text text-darken-2' >Login</a></li>
             <li><a href='#item' className='deep-purple-text text-darken-2' >Postings</a></li>

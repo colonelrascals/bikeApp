@@ -10,7 +10,7 @@ const ACTIONS = {
       User.login(email, password)
       .done(
         function (response) {
-          location.hash = 'home'
+          location.hash = 'item'
         }
         )
       .fail(
