@@ -4,6 +4,7 @@ import {Form, FormGroup, FormControl, Col, Checkbox, Button, ControlLabel} from 
 import { NavBar } from './navBar'
 import { Header } from './header'
 import { STORE } from './store'
+import 'materialize-css/js/materialize.js'
 
 export const RegisterPage = React.createClass({
 
@@ -11,7 +12,6 @@ export const RegisterPage = React.createClass({
     return (
       <div>
         <Header />
-        <NavBar />
         <LoginComponent />
         <RegisterComponent />
       </div>
@@ -33,7 +33,7 @@ const LoginComponent = React.createClass({
   },
   render () {
     return (
-      <Col sm={5}>
+      <div className='col 6'>
         <Form horizontal onSubmit={this._handleSubmit}>
           <FormGroup controlId='formHorizontalEmail'>
             <Col componentClass={ControlLabel} sm={2}>
@@ -67,7 +67,7 @@ const LoginComponent = React.createClass({
             </Col>
           </FormGroup>
         </Form>
-      </Col>
+      </div>
     )
   }
 })
@@ -88,7 +88,7 @@ const RegisterComponent = React.createClass({
   },
   render () {
     return (
-      <Col sm={5}>
+      <div className='col 6'>
         <Form horizontal onSubmit={this._handleSubmit}>
           <FormGroup>
             <Col componentClass={ControlLabel} sm={2}>
@@ -153,7 +153,7 @@ const RegisterComponent = React.createClass({
           </FormGroup>
         </Form>
 
-      </Col>
+      </div>
     )
   }
 })

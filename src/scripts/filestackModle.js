@@ -11,9 +11,11 @@ import secrets from '../../config/secrets'
 export const FileStackModle = React.createClass({
   _handleClick (evtObj) {
     var client = filestack.init(key, { policy: 'policy', signature: 'signature' })
-
     client.pick({
-      accept: ['image/*']
+      accept: ['image/*'],
+      transformOptions: {
+        maxDimensions: [300, 270]
+      }
 
     }).then(function (result) {
       ACTIONS.setProductImage(result.filesUploaded[0].url)

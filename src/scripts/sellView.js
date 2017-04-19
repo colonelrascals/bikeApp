@@ -44,6 +44,7 @@ export const SellView = React.createClass({
       seller: User.getCurrentUser()
     }
     ACTIONS.addListing(itemData)
+    formEl.reset()
   },
 
   // _addBikeDeet(e) { // use this single generic function (doesn't work, base it on this idea) to update your productinthemaking. can
@@ -59,7 +60,6 @@ export const SellView = React.createClass({
     return (
       <div >
         <Header />
-        <NavBar userLoginStatus={this.state.userLoginStatus} />
         <StripeButton />
         <Form horizontal onSubmit={this._handleSubmit}>
           <FormGroup controlId='formHorizontalText'>

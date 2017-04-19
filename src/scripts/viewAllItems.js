@@ -4,7 +4,6 @@ import { Header } from './header'
 import ACTION from './actions'
 import STORE from './store'
 import { Col, Thumbnail, Button, ButtonToolbar } from 'react-bootstrap'
-
 import StripeCheckout from 'react-stripe-checkout'
 
 export const AllItemsPage = React.createClass({
@@ -22,8 +21,6 @@ export const AllItemsPage = React.createClass({
     return (
       <div>
         <Header />
-        <NavBar />
-
         <CurrentItems items={this.state.ItemCollection} />
       </div>
     )
@@ -46,7 +43,7 @@ export const Item = React.createClass({
 
   // },
   onToken (token) {
-    console.log(token, JSON.stringify(token))
+
 
     var data = {
       tokenId: token.id,
@@ -66,25 +63,27 @@ export const Item = React.createClass({
       return response.json()
     })
       .then(resp => {
-        console.log(resp)
+
         alert('we are in business')
       })
   },
   render () {
     if (this.props.itemModel.get('seller').stripe_publishable_key.includes('tChP')) { // this is a troubleshooting step
-      console.log(this.props.itemModel.get('description'))
+
       return <div />
     }
 
     return (
 
-        <div className="col s2 m4">
-          <div className="card medium">
+        <div className="col s12 m4">
+          <div className="card large">
             <div className="card-image responsive-img">
-              <img src={this.props.itemModel.get('photoUrl')} />
+              <img src={this.props.itemModel.get('photoUrl')} alt='' width='100px' height='200px'className='responsive-img' />
             </div>
-            <div className="card-content flow-text">
-              <p>{this.props.itemModel.get('make')}</p>
+            <div className="card-content">
+              <h4>{this.props.itemModel.get('make')}</h4>
+              <h5>{this.props.itemModel.get('model')}</h5>
+              <p>{this.props.itemModel.get('year')}</p>
             </div>
             <div className="card-action">
               <h6>${this.props.itemModel.get('price')}</h6>
@@ -107,9 +106,9 @@ export const Item = React.createClass({
 
                 reconfigureOnUpdate>
 
-                <Button bsStyle='success'block className='deep-purple darken-2'>
+                <a className='deep-purple darken-2 btn'>
                  Buy Me
-                </Button>
+                </a>
               </StripeCheckout>
             </div>
           </div>

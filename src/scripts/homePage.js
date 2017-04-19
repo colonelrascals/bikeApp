@@ -9,7 +9,6 @@ const HomePage = React.createClass({
     return (
       <div>
         <Header />
-        <NavBar />
       </div>
     )
   }
