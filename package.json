@@ -68,6 +68,7 @@
     "react-s3-uploader": "^4.0.3",
     "react-script-loader": "0.0.1",
     "react-stripe-checkout": "^2.2.5",
+    "request": "^2.81.0",
     "stripe": "^4.18.0",
     "toastr": "^2.1.2"
   }
