@@ -13,7 +13,6 @@ export const NavBar = React.createClass({
   },
 
   render () {
-    console.log(this)
     return (
       <nav className='deep-purple darken-2'>
         <div className='nav-wrapper'>
