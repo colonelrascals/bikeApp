@@ -19,7 +19,7 @@ export const NavBar = React.createClass({
         <div className='nav-wrapper'>
 
           <a href='#item' className='brand-logo center'>Bike Shop</a>
-          <a className='dropdown-button left' data-activates='dropdown' data-alignment='right' data-beloworigin='true' ><i className='material-icons' >reorder</i></a>
+          <a className='dropdown-button left' data-activates='dropdown' data-alignment='right' data-beloworigin='true' style={{cursor: 'pointer'}}><i className='material-icons' >reorder</i></a>
 
           <ul className='left hide-on-med-and-down'>
             <li><a href='#home'>Home</a></li>

@@ -3,8 +3,26 @@ import { NavBar } from './navBar'
 import { Header } from './header'
 import ACTION from './actions'
 import STORE from './store'
-import { Col, Thumbnail, Button, ButtonToolbar } from 'react-bootstrap'
 import StripeCheckout from 'react-stripe-checkout'
+import toastr from 'toastr'
+
+toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-top-right",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
 
 export const AllItemsPage = React.createClass({
   componentWillMount () {
@@ -51,7 +69,6 @@ export const Item = React.createClass({
       stripeUserId: this.props.itemModel.get('seller').stripe_user_id,
       myFee: Math.floor(this.props.itemModel.get('price') * 2)
     }
-    console.log(JSON.stringify(data))
     fetch('/stripe/charge', {
       method: 'POST',
       body: JSON.stringify(data),
@@ -63,8 +80,7 @@ export const Item = React.createClass({
       return response.json()
     })
       .then(resp => {
-
-        alert('we are in business')
+        toastr.success("", "Checkout Complete!")
       })
   },
   render () {
@@ -94,16 +110,14 @@ export const Item = React.createClass({
                 name={this.props.itemModel.get('seller').name}
                 email={this.props.itemModel.get('seller').email}
                 stripe_account={this.props.itemModel.get('seller').stripe_user_id}
-                description='Big Data Stuff'
+                description='Bike Shop'
                 amount={Math.floor(this.props.itemModel.get('price') * 100)}
                 currency='USD'
                 shippingAddress
                 billingAddress
                 zipCode={false}
-                alipay
                 bitcoin
                 allowRememberMe
-
                 reconfigureOnUpdate>
 
                 <a className='deep-purple darken-2 btn'>
