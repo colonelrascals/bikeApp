@@ -64,7 +64,7 @@ export const Item = React.createClass({
     })
       .then(resp => {
 
-        alert('we are in business')
+        alert('Thanks for payment')
       })
   },
   render () {
@@ -114,9 +114,8 @@ export const Item = React.createClass({
           </div>
         </div>
 
-            
+
 
     )
   }
 })
- 
