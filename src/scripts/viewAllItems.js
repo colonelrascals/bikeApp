@@ -80,7 +80,7 @@ export const Item = React.createClass({
       return response.json()
     })
       .then(resp => {
-        toastr.success("", "Checkout Complete!")
+        alert('Thanks for payment ')
       })
   },
   render () {
@@ -128,9 +128,8 @@ export const Item = React.createClass({
           </div>
         </div>
 
-            
+
 
     )
   }
 })
- 
