@@ -64,7 +64,7 @@ export const Item = React.createClass({
     })
       .then(resp => {
 
-        alert('Thanks for payment')
+        alert('Thanks for payment ')
       })
   },
   render () {
