@@ -1,9 +1,7 @@
 import React from 'react'
 import ACTIONS from './actions'
 import {Form, FormGroup, FormControl, Col, Checkbox, Button, ControlLabel} from 'react-bootstrap'
-import { NavBar } from './navBar'
 import { Header } from './header'
-import { STORE } from './store'
 import 'materialize-css/js/materialize.js'
 
 export const RegisterPage = React.createClass({
@@ -23,10 +21,6 @@ const LoginComponent = React.createClass({
   _handleSubmit (evtObj) {
     evtObj.preventDefault()
     var formEl = evtObj.target
-    var formData = {
-      email: formEl.email.value.toString(),
-      password: formEl.password.value.toString()
-    }
 
     ACTIONS.loginUser(formEl.email.value, formEl.password.value)
     formEl.reset()

@@ -1,21 +1,19 @@
 import STORE from './store'
 import {User} from './models/userModel'
-import Backbone from 'backbone'
-import { ItemModel, ItemCollection } from './models/itemModel'
-import $ from 'jquery'
+import { ItemModel } from './models/itemModel'
 
 const ACTIONS = {
   loginUser (email, password) {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
       User.login(email, password)
       .done(
-        function (response) {
+        function () {
           location.hash = 'item'
         }
         )
       .fail(
         function (error) {
-
+          // TODO: add error handling
         }
         )
     } else {
@@ -26,13 +24,13 @@ const ACTIONS = {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formData.email)) {
       User.register(formData)
       .done(
-        function (response) {
+        function () {
           ACTIONS.loginUser(formData.email, formData.password)
         }
         )
       .fail(
         function (error) {
-
+          // TODO: add error handling
         }
         )
     } else {

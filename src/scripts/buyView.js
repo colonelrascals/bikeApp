@@ -1,7 +1,6 @@
 import React from 'react'
 import StripeCheckout from 'react-stripe-checkout'
 import { Button } from 'react-bootstrap'
-import STORE from './store'
 import { Item } from './viewAllItems'
 
 export const StripeButton = React.createClass({
@@ -41,7 +40,7 @@ export const StripeButton = React.createClass({
         bitcoin
         allowRememberMe
         token={this.onToken}
-        // Note: `reconfigureOnUpdate` should be set to true IFF, for some reason
+        // Note: `reconfigureOnUpdate` should be set to true IF for some reason
         // you are using multiple stripe keys
         reconfigureOnUpdate={false}
         // Note: you can change the event to `onTouchTap`, `onClick`, `onTouchStart`

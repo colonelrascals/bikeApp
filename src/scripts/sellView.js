@@ -1,7 +1,6 @@
 import React from 'react'
 import ACTIONS from './actions'
 import STORE from './store'
-import { NavBar } from './navBar'
 import { Header } from './header'
 import StripeButton from './StripeButton'
 import { Form, FormGroup, FormControl, Col, ControlLabel, Checkbox, Button } from 'react-bootstrap'
@@ -26,11 +25,6 @@ export const SellView = React.createClass({
   _handleSubmit (evtObj) {
     evtObj.preventDefault()
     var formEl = evtObj.target
-    console.log(formEl)
-    // if (!this._validatePosting()) {
-    //   alert('somethign')
-    //   return
-    // }
     var itemData = {
       make: formEl.make.value,
       model: formEl.model.value,

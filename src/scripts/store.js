@@ -1,5 +1,5 @@
 import Backbone from 'backbone'
-import { ItemCollection, ItemModel } from './models/itemModel'
+import { ItemCollection } from './models/itemModel'
 import { User } from './models/userModel'
 
 const STORE = Object.assign({}, Backbone.Events, {

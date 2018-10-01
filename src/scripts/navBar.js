@@ -1,5 +1,4 @@
 import React from 'react'
-import STORE from './store'
 import ACTIONS from './actions'
 // import { Nav, Navbar, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
 
