@@ -1,5 +1,4 @@
 import React from 'react'
-import { NavBar } from './navBar'
 import { Header } from './header'
 import ACTION from './actions'
 import STORE from './store'

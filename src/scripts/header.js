@@ -1,7 +1,4 @@
 import React from 'react'
-import STORE from './store.js'
-import { Jumbotron, Row, Col } from 'react-bootstrap'
-import {NavBar} from './navBar.js'
 
 export const Header = React.createClass({
   render () {
